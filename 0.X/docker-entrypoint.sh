@@ -34,12 +34,6 @@ fi
 # VAULT_LOCAL_CONFIG below.
 VAULT_CONFIG_DIR=/vault/config
 
-# You can also set the VAULT_LOCAL_CONFIG environment variable to pass some
-# Vault configuration JSON without having to bind any volumes.
-if [ -n "$VAULT_LOCAL_CONFIG" ]; then
-    echo "$VAULT_LOCAL_CONFIG" > "$VAULT_CONFIG_DIR/local.json"
-fi
-
 # If the user is trying to run Vault directly with some arguments, then
 # pass them to Vault.
 if [ "${1:0:1}" = '-' ]; then
@@ -96,4 +90,9 @@ if [ "$1" = 'vault' ]; then
     fi
 fi
 
+# You can also set the VAULT_LOCAL_CONFIG environment variable to pass some
+# Vault configuration JSON without having to bind any volumes.
+if [ -n "$VAULT_LOCAL_CONFIG" ]; then
+    echo "$VAULT_LOCAL_CONFIG" > "$VAULT_CONFIG_DIR/local.json"
+fi
 exec "$@"
