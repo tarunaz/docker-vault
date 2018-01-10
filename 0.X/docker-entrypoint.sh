@@ -90,10 +90,4 @@ if [ "$1" = 'vault' ]; then
     fi
 fi
 
-# You can also set the VAULT_LOCAL_CONFIG environment variable to pass some
-# Vault configuration JSON without having to bind any volumes.
-if [ -n "$VAULT_LOCAL_CONFIG" ]; then
-    echo "$VAULT_LOCAL_CONFIG" > "$VAULT_CONFIG_DIR/local.json"
-fi
-
 exec "$@"
